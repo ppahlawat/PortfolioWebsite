@@ -1,0 +1,19 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+nav ol{
+    margin: 0;
+    list-style: none;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: black;
+    color: white;
+    gap: 20px;
+    padding: 20px 30px 20px 0;
+}
