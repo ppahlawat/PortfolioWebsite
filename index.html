@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Priyanshu Pahlawat</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body, html {
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: "Space Mono", "Courier New", monospace;
+  }
+
+  /* Welcome screen */
+  .welcome-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #0a1526 0%, #16294a 50%, #1c3a63 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .welcome-card {
+    background: rgba(16, 31, 56, 0.65);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(244, 241, 230, 0.15);
+    border-radius: 16px;
+    padding: 56px 60px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    max-width: 420px;
+    animation: fadeUp 0.7s ease;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .welcome-card h1 {
+    color: #f4f1e6;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .welcome-card p {
+    color: rgba(244, 241, 230, 0.65);
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+  }
+
+  .welcome-btn {
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 13px 32px;
+    border-radius: 8px;
+    border: 1px solid #c9a06a;
+    background: #c9a06a;
+    color: #0a1526;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  .welcome-btn:hover {
+    background: #e0b980;
+    transform: translateY(-2px);
+  }
+
+  .welcome-screen.hidden {
+    display: none;
+  }
+
+  /* Video screen */
+  .intro-wrap {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .intro-btn {
+    position: absolute;
+    bottom: 40px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 12px 26px;
+    border-radius: 6px;
+    border: 1px solid #c9a06a;
+    background: rgba(10, 21, 38, 0.75);
+    color: #f4f1e6;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .intro-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .intro-btn:hover {
+    background: #c9a06a;
+    color: #0a1526;
+  }
+
+  .btn-left { left: 40px; }
+  .btn-right { right: 40px; }
+</style>
+</head>
+<body>
+
+<!-- Screen 1: Welcome -->
+<div class="welcome-screen" id="welcomeScreen">
+  <div class="welcome-card">
+    <h1>Welcome to my website</h1>
+    <p>Made By Priyanshu Pahlawat</p>
+    <button class="welcome-btn" id="continueBtn">Continue</button>
+  </div>
+</div>
+
+<!-- Screen 2: Video -->
+<div class="intro-wrap">
+  <video class="intro-video" id="projectVideo" src="assets/projectVideo.mp4" loop playsinline></video>
+
+  <button class="intro-btn btn-left" id="enterSite">I'm a loser</button>
+  <button class="intro-btn btn-right" id="skipBtn">Skip</button>
+</div>
+
+<audio id="skipAudio" src="assets/projectAudio.mp3"></audio>
+
+<script>
+  const welcomeScreen = document.getElementById("welcomeScreen");
+  const continueBtn = document.getElementById("continueBtn");
+  const projectVideo = document.getElementById("projectVideo");
+  const skipAudio = document.getElementById("skipAudio");
+  const enterBtn = document.getElementById("enterSite");
+  const skipBtn = document.getElementById("skipBtn");
+
+  continueBtn.addEventListener("click", () => {
+    // hide welcome screen
+    welcomeScreen.classList.add("hidden");
+
+    // this click counts as real interaction, so sound works normally
+    projectVideo.play();
+
+    // buttons appear 5 seconds after the video screen shows up
+    setTimeout(() => {
+      enterBtn.classList.add("visible");
+      skipBtn.classList.add("visible");
+    }, 6000);
+  });
+
+  // Left button — confirm before leaving
+  enterBtn.addEventListener("click", () => {
+    const confirmed = confirm("Are you sure you want to continue as a loser?");
+    if (confirmed) {
+      window.location.href = "main.html";
+    }
+  });
+
+  // Right button — separate short audio, restarts from the
+  // beginning every time it's clicked, no link to the video at all
+  skipBtn.addEventListener("click", () => {
+    skipAudio.currentTime = 0;
+    skipAudio.play();
+  });
+</script>
+
+</body>
+</html>

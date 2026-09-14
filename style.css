@@ -1,0 +1,555 @@
+/* ============================================
+   Design tokens
+   ============================================ */
+:root {
+  --navy-dark: #0a1526;
+  --navy: #101f38;
+  --navy-light: #16294a;
+  --cream: #f4f1e6;
+  --tan: #c9a06a;
+  --sage: #7a9a7e;
+  --border: rgba(244, 241, 230, 0.16);
+
+  --font-head: "Space Mono", "Courier New", monospace;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --max-width: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--navy);
+  color: var(--cream);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  margin: 0 0 0.5em 0;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0 0 1em 0;
+}
+
+a {
+  color: var(--cream);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrapMain{
+  max-width: var(--max-width);
+  margin: 0;
+  padding: 0 32px;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ============================================
+   Nav bar
+   ============================================ */
+.navbar {
+  background: var(--navy-dark);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  
+}
+
+.navbar .wrap {
+  max-width: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand {
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--tan);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--tan);
+  border-bottom-color: var(--tan);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--cream);
+  font-size: 1.1rem;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* ============================================
+   Hero (home page)
+   ============================================ */
+.hero {
+  /* position: relative;
+  background-image: linear-gradient(180deg, rgba(10, 21, 38, 0.15) 0%, rgba(10, 21, 38, 0.55) 100%), url("/bg.jpg");
+  background-size: cover;
+  background-position: center 20%; */
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+}
+
+.hero::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    
+    
+    background-image: linear-gradient(180deg, rgba(10, 21, 38, 0.15) 0%, rgba(10, 21, 38, 0.55) 100%), url("assets/bg.jpg");
+    background-position: center;
+    background-size: cover;
+
+    z-index: -1;
+
+    filter: brightness(0.55) blur(1px);
+
+}
+
+.hero-card {
+  background: rgba(10, 21, 38, 0.86);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 40px 36px;
+  max-width: 420px;
+  margin: 40px 0;
+}
+
+.hero-card h1 {
+  font-size: 2.1rem;
+  color: var(--cream);
+}
+
+.hero-card .role {
+  font-family: var(--font-body);
+  color: var(--tan);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero-card .tagline {
+  color: rgba(244, 241, 230, 0.85);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+.hero-card .btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--tan);
+  color: var(--tan);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--tan);
+  color: var(--navy-dark);
+}
+
+.btn.solid {
+  background: var(--tan);
+  color: var(--navy-dark);
+}
+
+.btn.solid:hover {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: var(--navy-dark);
+}
+
+/* ============================================
+   Section headings
+   ============================================ */
+.section {
+  padding: 64px 0;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  color: var(--cream);
+  border-left: 3px solid var(--tan);
+  padding-left: 14px;
+  margin-bottom: 36px;
+}
+
+/* ============================================
+   Recent Adventures (home page)
+   ============================================ */
+.adventures {
+  background: var(--navy-dark);
+}
+
+.adventure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.adventure-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.adventure-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: rgba(244, 241, 230, 0.06);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(244, 241, 230, 0.4);
+  font-family: var(--font-head);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.adventure-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.adventure-body {
+  padding: 18px 20px 22px;
+}
+
+.adventure-body h3 {
+  font-size: 1rem;
+  color: var(--tan);
+  margin-bottom: 8px;
+}
+
+.adventure-body p {
+  font-size: 0.9rem;
+  color: rgba(244, 241, 230, 0.8);
+  margin: 0;
+}
+
+/* ============================================
+   About page
+   ============================================ */
+.about-page {
+  background: var(--navy);
+}
+
+.about-hero {
+  padding: 72px 0 24px;
+}
+
+.about-hero h1 {
+  font-size: 2rem;
+}
+
+.about-hero .role {
+  color: var(--tan);
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px 30px;
+}
+
+.card + .card {
+  margin-top: 24px;
+}
+
+.card h2 {
+  font-size: 1.1rem;
+  color: var(--tan);
+  margin-bottom: 14px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-tags li {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  color: var(--cream);
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.info-list li:last-child {
+  border-bottom: none;
+}
+
+.info-list .label {
+  color: rgba(244, 241, 230, 0.55);
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+
+/* ============================================
+   Projects & Experience page (plain background)
+   ============================================ */
+.projects-page {
+  background: var(--navy);
+  color: var(--navy-dark);
+}
+
+.projects-page .navbar {
+  background: var(--navy-dark);
+}
+
+.projects-page .brand,
+.projects-page .nav-links a {
+  color: var(--cream);
+}
+
+.projects-page .nav-links a:hover,
+.projects-page .nav-links a.active {
+  color: var(--tan);
+}
+
+.projects-hero {
+  padding: 64px 0 16px;
+}
+
+.projects-hero h1 {
+  color: var(--cream);
+}
+
+.projects-hero p {
+  color: rgba(10, 21, 38, 0.7);
+  max-width: 60ch;
+  color: var(--tan);
+}
+
+.entry-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.entry {
+  background: var(--navy-light);
+  border: 1px solid rgba(10, 21, 38, 0.12);
+  border-radius: 10px;
+  padding: 28px 30px;
+}
+
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.entry-head h2 {
+  font-size: 1.15rem;
+  color: var(--tan);
+  margin: 0;
+}
+
+.entry-meta {
+  font-family: var(--font-head);
+  font-size: 0.8rem;
+  color: var(--tan);
+}
+
+.entry-sub {
+  font-size: 0.85rem;
+  color: rgba(10, 21, 38, 0.6);
+  margin-bottom: 12px;
+  color: var(--sage);
+}
+
+.entry p.entry-desc {
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.entry-tags li {
+  border: 1px solid rgba(10, 21, 38, 0.18);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  color: var(--navy-dark);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.site-footer {
+  background: var(--navy-dark);
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(244, 241, 230, 0.6);
+}
+
+.projects-page .site-footer {
+  background: var(--navy-dark);
+  color: rgba(244, 241, 230, 0.6);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 800px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .adventure-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-toggle {
+    display: inline-block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--navy-dark);
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 14px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-card {
+    max-width: none;
+    margin: 24px 16px;
+  }
+
+  .hero {
+    min-height: 520px;
+  }
+
+  .entry-head {
+    flex-direction: column;
+  }
+}
